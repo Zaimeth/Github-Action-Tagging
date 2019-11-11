@@ -16,8 +16,3 @@ EXPOSE 3000
 # COPY . ./
 
 CMD [ "node", "app.js" ]
-
-# #tahap 2
-# FROM nginx:alpine
-
-# COPY --from=node /app/dist/meApp /usr/share/nginx/html
