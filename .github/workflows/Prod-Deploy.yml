@@ -15,8 +15,6 @@ jobs:
       - name: Get the version of release
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-
-
       # - name: Docker Build Dev with Tag
       #   uses: azure/container-actions/docker-login@master
       #   with:
