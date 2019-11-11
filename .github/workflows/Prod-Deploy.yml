@@ -25,6 +25,6 @@ jobs:
 
       - name: Build and push
         run: |
-          docker build -t fauzif06/git:${{steps.get_version.outputs.VERSION}} -f Dockerfile
+          docker build -t fauzif06/git:${{steps.get_version.outputs.VERSION}} -f Dockerfile .
           docker push fauzif06/git:${{steps.get_version.outputs.VERSION}}
       
