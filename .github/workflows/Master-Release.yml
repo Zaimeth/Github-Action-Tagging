@@ -1,0 +1,34 @@
+name: Master Release Workflow
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  job_1:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [11.14.0]
+    steps:
+    - name: Checkout master branch
+      uses: actions/checkout@v1
+     
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: NPM build and install
+      run: npm install package.json
+      
+  job_2:
+    name: Draft Release
+    needs: job_1
+    runs-on: ubuntu-latest
+    steps:
+      # Drafts your next Release notes as Pull Requests are merged into "master"
+      - uses: toolmantim/release-drafter@v5.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
